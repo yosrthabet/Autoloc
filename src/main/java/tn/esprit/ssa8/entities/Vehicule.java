@@ -1,9 +1,11 @@
 package tn.esprit.ssa8.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -27,4 +29,14 @@ public class Vehicule {
 
     @Enumerated(EnumType.STRING)
     private StatutVehicule statut;
+
+    @ManyToOne
+    private Agence agence;
+
+    @ManyToMany
+    private Set<Equipement> equipements;
+
+    @OneToMany(mappedBy = "vehicule")
+    @JsonIgnore
+    private Set<Reservation> reservations;
 }

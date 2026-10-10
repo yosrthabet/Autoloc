@@ -1,9 +1,11 @@
 package tn.esprit.ssa8.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -22,4 +24,8 @@ public class Client {
     private String telephone;
     private String numPermis;
     private LocalDate dateInscription;
+
+    @OneToMany(mappedBy = "client")
+    @JsonIgnore
+    private Set<Reservation> reservations;
 }

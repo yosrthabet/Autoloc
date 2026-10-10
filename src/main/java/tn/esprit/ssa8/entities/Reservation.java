@@ -1,5 +1,6 @@
 package tn.esprit.ssa8.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,4 +22,14 @@ public class Reservation {
 
     @Enumerated(EnumType.STRING)
     private StatutReservation statut;
+
+    @ManyToOne
+    private Vehicule vehicule;
+
+    @ManyToOne
+    private Client client;
+
+    @OneToOne(mappedBy = "reservation")
+    @JsonIgnore
+    private Contrat contrat;
 }

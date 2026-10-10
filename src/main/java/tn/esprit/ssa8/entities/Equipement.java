@@ -1,7 +1,10 @@
 package tn.esprit.ssa8.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.Set;
 
 @Entity
 @Getter
@@ -15,4 +18,8 @@ public class Equipement {
     private Long idEquipement;
 
     private String libelle;
+
+    @ManyToMany(mappedBy = "equipements")
+    @JsonIgnore
+    private Set<Vehicule> vehicules;
 }
